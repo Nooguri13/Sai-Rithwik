@@ -273,17 +273,16 @@
 								<h1 class="big">About</h1>
 								<h2 class="mb-4">About Me</h2>
 								
-								<p>I am Nooguri Sai Rithwik, a data science and machine learning enthusiast with a strong background in data analysis,
-									 artificial intelligence, and predictive modeling. Currently pursuing an M.S. in Computer & Information Science (Data Science) 
-									 at the University of North Florida (UNF), I am passionate about transforming 
-									 raw data into meaningful insights to drive decision-making.</p>
+								<p>As a passionate data science and machine learning professional, I specialize in uncovering insights from complex datasets to drive strategic decision-making. 
+									With hands-on experience in predictive modeling, AI algorithms, and data visualization tools like Power BI and Tableau, I bridge the gap between data and actionable business intelligence. 
+									Currently pursuing an M.S. in Computer & Information Science (Data Science) at UNF, I am committed to leveraging technology to solve real-world problems through data-driven innovation.</p>
 								<ul class="about-info mt-4 px-md-0 px-2">
 										<li class="d-flex"><span>Profile:</span> <span>Data Science &amp; Machine Learning</span></li>
-										<li class="d-flex"><span>Domain:</span> <span>AI, Data Analytics, Business Intelligence</span></li>
+										<li class="d-flex"><span>Domain:</span> <span>Data Science, Data Analytics & AI</span></li>
 										<li class="d-flex"><span>Education:</span> <span>M.S. in Computer &amp; Info Science (Data Science)</span></li>
 										<li class="d-flex"><span>Language:</span> <span>English, Hindi & Telugu</span></li>
 										<li class="d-flex"><span>BI Tools:</span> <span>Microsoft Power BI, Tableau, Advanced Excel</span></li>
-										<li class="d-flex"><span>Other Skills:</span> <span>Python, R, SQL, Machine Learning, Git, CRM Tools, Data Visualization</span></li>
+										<li class="d-flex"><span>Other Skills:</span> <span>Python, R, SQL, Machine Learning, CRM Tools, Data Visualization</span></li>
 										<li class="d-flex"><span>Interest:</span> <span>AI Research & Data Science Projects</span></li>
 									</ul>
 							</div>
@@ -455,7 +454,7 @@
 	  </div>
     </section>
 
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
+	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter" style="position: relative; z-index: 1;"></section>
 		<div class="container">
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
@@ -477,24 +476,59 @@
 			</div>
 		</div>
 	</section>
+
+	<style>
+		.ftco-hireme {
+			position: relative;
+			z-index: 10; /* Ensures it's above other sections */
+			background-size: cover;
+			padding: 50px 0; /* Adds space to prevent overlap */
+		}
+
+		#section-counter {
+			position: relative;
+			z-index: 1; /* Keeps it below the GitHub section */
+		}
+	</style>
 	</section>
 	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love to solve business problems &amp; uncover hidden data stories </h4>
+	<div>
+		<div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg); position: relative; z-index: 1;">
+			<div class="row justify-content-center">
+				<div class="col-md-7 ftco-animate text-center">
+					<h2>More projects on <span>GitHub</span></h2>
+					<div class="heading">
+						<h4>I love to solve business problems &amp; uncover hidden data stories</h4>
 						<br>
-						<p><a href="https://github.com/rithwik-tech" class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
+						<p>
+							<a href="https://github.com/rithwik-tech" target="_blank" class="btn btn-primary py-3 px-5 github-btn">
+								Visit My GitHub
+							</a>
+						</p>
 					</div>
 				</div>
-			<!-- </div> -->
+			</div>
+		
+		<style>
+			.github-btn {
+				position: relative; /* Ensures button stays above other elements */
+				z-index: 10; /* Keeps it above background images */
+			}
+		
+			/* Ensure the background image does not block the button */
+			.ftco-hireme {
+				position: relative;
+				z-index: 1;
+				background-size: cover;
+			}
+		</style>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 
-
+	
 
     <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
       <div class="container">
