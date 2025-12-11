@@ -1,464 +1,842 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sai Rithwik | Data Scientist</title>
-    <!-- Tailwind CSS for modern, utility-first styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sai Rithwik Nooguri | Data Scientist</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400&display=swap');
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            @apply bg-gray-900 text-gray-200;
+        :root {
+            /* Modern Dark Theme Palette */
+            --bg-dark: #0f172a;        /* Slate 900 - Main Background */
+            --bg-card: #1e293b;        /* Slate 800 - Card Background */
+            --text-primary: #f8fafc;   /* Slate 50 */
+            --text-secondary: #94a3b8; /* Slate 400 */
+            
+            /* Gradient Accents */
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); /* Indigo to Purple */
+            --accent-glow: rgba(139, 92, 246, 0.5);
+            --accent-color: #8b5cf6;
+            
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
         }
 
-        .poppins {
-            font-family: 'Poppins', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .hero-bg {
-            background-image: url('https://i0.wp.com/spotintelligence.com/wp-content/uploads/2022/10/ai-ml-ds-jpg.webp?w=1080&ssl=1');
-            background-size: cover;
-            background-position: center;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 20%);
         }
-        .nav-link {
+
+        h1, h2, h3, .logo {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Navigation - Glassmorphism */
+        nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             position: relative;
         }
-        .nav-link.active {
-            color: #0047AB;
-            font-weight: 600;
+
+        .nav-links a:hover {
+            color: var(--text-primary);
         }
-        .nav-link.active::after {
+
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
+            width: 0;
             height: 2px;
-            background-color: #0047AB;
+            bottom: -4px;
+            left: 0;
+            background: var(--accent-gradient);
             transition: width 0.3s ease;
         }
-        .nav-link:not(.active):hover {
-            color: #0047AB;
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
-        .section-header {
-            position: relative;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: #fff;
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 2rem 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            position: relative;
         }
-        .section-header::after {
+
+        .hero::before {
             content: '';
             position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-color);
+            filter: blur(150px);
+            opacity: 0.2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Profile Image */
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+                        var(--accent-gradient) border-box;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-title span {
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .skill-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .skill-item i {
+            font-size: 2.2rem;
+            background: linear-gradient(to bottom right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            color: var(--text-primary);
+        }
+
+        .skill-item:hover i {
+            transform: scale(1.1);
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
+            top: 0;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: #0047AB;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item.left { left: 0; text-align: right; }
+        .timeline-item.right { left: 50%; text-align: left; }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: var(--bg-dark);
+            border: 3px solid var(--accent-color);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .timeline-item.right::after { left: -8px; }
+
+        .timeline-content {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow);
+        }
+
+        .role {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: block;
+        }
+
+        .company {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: block;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .timeline-content ul {
+            text-align: left;
+            padding-left: 1rem;
+            list-style-type: none;
+        }
+        
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .timeline-content li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Featured Work */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-pill {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .project-link {
+            font-weight: 600;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(to top, #0f172a, #1e293b);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b1120;
+            color: var(--text-secondary);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+            padding: 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .social-icon:hover {
+            color: white;
+            background: var(--accent-gradient);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-container { padding-top: 40px; }
+            
+            .timeline::after { left: 30px; }
+            .timeline-item { width: 100%; padding-left: 60px; padding-right: 20px; }
+            .timeline-item.left, .timeline-item.right { left: 0; text-align: left; }
+            .timeline-item::after { left: 22px; }
+            .timeline-item.right::after { left: 22px; }
+            
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            
+            .btn { width: 100%; margin: 10px 0 0 0; text-align: center; }
+            .btn-outline { margin-left: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 z-50 w-full bg-black bg-opacity-70 backdrop-blur-lg shadow-md">
-        <div class="container mx-auto flex items-center justify-between py-4 px-6">
-            <a href="#" class="text-xl font-bold poppins text-white">Sai Rithwik</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#home" class="nav-link text-white transition-colors duration-300">Home</a>
-                <a href="#about" class="nav-link text-white transition-colors duration-300">About</a>
-                <a href="#resume" class="nav-link text-white transition-colors duration-300">Resume</a>
-                <a href="#publications" class="nav-link text-white transition-colors duration-300">Publications</a>
-                <a href="#experience" class="nav-link text-white transition-colors duration-300">Experience</a>
-                <a href="#education" class="nav-link text-white transition-colors duration-300">Education</a>
-                <a href="#projects" class="nav-link text-white transition-colors duration-300">Projects</a>
-                <a href="#contact" class="nav-link text-white transition-colors duration-300">Contact</a>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Sai<span>Rithwik</span></a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
             </div>
-            <!-- Hamburger menu for mobile -->
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile menu sidebar -->
-        <div id="sidebar" class="fixed top-0 right-0 w-64 h-full bg-black transform translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden">
-            <div class="flex justify-end p-4">
-                <button id="close-sidebar-btn" class="text-white focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="flex flex-col p-4 space-y-2">
-                <a href="#home" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">Home</a>
-                <a href="#about" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">About</a>
-                <a href="#resume" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">Resume</a>
-                <a href="#publications" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">Publications</a>
-                <a href="#experience" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">Experience</a>
-                <a href="#education" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">Education</a>
-                <a href="#projects" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">Projects</a>
-                <a href="#contact" class="sidebar-link block py-2 px-4 text-white hover:bg-gray-800 transition-colors duration-300">Contact</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content hero-container">
+            <img src="https://i1.rgstatic.net/ii/profile.image/11431281780613341-1765385205791_Q128/Sai-Rithwik-Nooguri.jpg" alt="Sai Rithwik Nooguri" class="profile-img">
+            <h1>Hi, I'm Sai Rithwik Nooguri</h1>
+            <p>M.S. Data Science Student & AI Researcher based in Jacksonville, FL.</p>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="#work" class="btn btn-outline">View My Work</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title"><span>About Me</span></h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-secondary);">
+                <p style="margin-bottom: 1.5rem; font-size: 1.2rem; line-height: 1.8;">
+                    Hi! I'm a Data Science student at the University of North Florida.
+                </p>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                    I love using data to solve real-world problems. Whether it's analyzing housing trends or studying how AI affects our jobs, I enjoy finding the story behind the numbers.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    I have strong skills in Python, SQL, and Machine Learning. Right now, I'm working on research projects and looking for opportunities to start my career in Data Science.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title"><span>My Tech Stack</span></h2>
+            <div class="skills-grid">
+                <!-- Data Science -->
+                <div class="skill-category">
+                    <h3>Data Analysis</h3>
+                    <div class="skill-logos">
+                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                        <div class="skill-item"><i class="fab fa-r-project"></i> R</div>
+                        <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                        <div class="skill-item"><i class="fas fa-chart-bar"></i> Tableau</div>
+                        <div class="skill-item"><i class="fas fa-chart-pie"></i> Power BI</div>
+                        <div class="skill-item"><i class="fas fa-file-excel"></i> Excel</div>
+                        <div class="skill-item"><i class="fas fa-calculator"></i> Statistics</div>
+                    </div>
+                </div>
+                <!-- AI & ML -->
+                <div class="skill-category">
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skill-logos">
+                        <div class="skill-item"><i class="fas fa-robot"></i> Gen AI</div>
+                        <div class="skill-item"><i class="fas fa-brain"></i> TensorFlow</div>
+                        <div class="skill-item"><i class="fas fa-comment-dots"></i> Prompt Eng.</div>
+                        <div class="skill-item"><i class="fas fa-language"></i> NLP</div>
+                        <div class="skill-item"><i class="fas fa-chess-knight"></i> RL</div>
+                        <div class="skill-item"><i class="fas fa-image"></i> Stable Diffusion</div>
+                    </div>
+                </div>
+                <!-- Engineering -->
+                <div class="skill-category">
+                    <h3>Engineering</h3>
+                    <div class="skill-logos">
+                        <div class="skill-item"><i class="fab fa-java"></i> Java</div>
+                        <div class="skill-item"><i class="fas fa-code"></i> C</div>
+                        <div class="skill-item"><i class="fab fa-microsoft"></i> Azure</div>
+                        <div class="skill-item"><i class="fas fa-cubes"></i> Databricks</div>
+                        <div class="skill-item"><i class="fas fa-code-branch"></i> Git</div>
+                        <div class="skill-item"><i class="fas fa-sync-alt"></i> ETL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background-color: rgba(0,0,0,0.2);">
+        <div class="container">
+            <h2 class="section-title"><span>Experience</span></h2>
+            <div class="timeline">
+                <!-- Item 1 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="role">Data Science Intern</span>
+                        <span class="company">Jacksonville Rental Housing Project</span>
+                        <span class="date">May 2025 - Present</span>
+                        <ul>
+                            <li>Building tools to collect and clean large amounts of housing data.</li>
+                            <li>Creating easy-to-read dashboards to show housing trends in Jacksonville.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="role">Research Fellow</span>
+                        <span class="company">Florida Blue Ethics Center</span>
+                        <span class="date">Sep 2025 - Dec 2025</span>
+                        <ul>
+                            <li>Writing articles about the ethical side of technology and AI.</li>
+                            <li>Researching how new tech impacts our society.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="role">Graduate Researcher</span>
+                        <span class="company">UNF (City Analysis)</span>
+                        <span class="date">Jan 2025 - Dec 2025</span>
+                        <ul>
+                            <li>Comparing Jacksonville's growth with other major cities using data.</li>
+                            <li>Working with census and sensor data to find key insights.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="role">Data Analyst Intern</span>
+                        <span class="company">Previous Role</span>
+                        <span class="date">Nov 2023 - Jun 2024</span>
+                        <ul>
+                            <li>Helped the business make faster decisions using Power BI reports.</li>
+                            <li>Used AI tools to improve sales and business processes.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work/Publications -->
+    <section id="work">
+        <div class="container">
+            <h2 class="section-title"><span>Featured Work</span></h2>
+            <div class="projects-grid">
+                <!-- Pub 1 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <span class="project-type">Publication</span>
+                        <h3 class="project-title">Credit Card Fraud Detection</h3>
+                        <div class="project-tech">
+                            <span class="tech-pill"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-pill"><i class="fas fa-brain"></i> Deep Learning</span>
+                        </div>
+                        <p class="project-desc">
+                            A published research paper on using advanced AI (Deep Reinforcement Learning) to catch credit card fraud in real-time.
+                        </p>
+                        <a href="#" class="project-link">View DOI <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Pub 2 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <span class="project-type">Op-Ed Commentary</span>
+                        <h3 class="project-title">AI & The Job Market</h3>
+                        <div class="project-tech">
+                            <span class="tech-pill"><i class="fas fa-pen-nib"></i> Writing</span>
+                            <span class="tech-pill"><i class="fas fa-users"></i> Social Impact</span>
+                        </div>
+                        <p class="project-desc">
+                            An article published in <em>UNF Spinnaker</em> discussing how AI is changing what companies expect from new graduates.
+                        </p>
+                        <a href="https://unfspinnaker.com/112460/opinions/opinion-ai-is-reshaping-the-job-market-students-need-to-catch-up/" target="_blank" class="project-link">Read Article <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <span class="project-type">Research Dashboard</span>
+                        <h3 class="project-title">Comparative City Analysis</h3>
+                        <div class="project-tech">
+                            <span class="tech-pill"><i class="fas fa-chart-pie"></i> Tableau</span>
+                            <span class="tech-pill"><i class="fas fa-database"></i> Big Data</span>
+                        </div>
+                        <p class="project-desc">
+                            A data project benchmarking Jacksonville against peer cities to analyze economic, health, and transport indicators.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title"><span>Let's Connect</span></h2>
+            <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                I am looking for full-time Data Science roles starting <strong>May 2026</strong>.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                <a href="mailto:rithwiknuguri13@gmail.com" class="btn btn-primary" style="min-width: 250px;">
+                    <i class="fas fa-envelope" style="margin-right: 10px;"></i> rithwiknuguri13@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/sai-rithwik-nooguri/" class="social-icon" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Nooguri13" class="social-icon" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.researchgate.net/profile/Sai-Rithwik-Nooguri?ev=hdr_xprf" class="social-icon" aria-label="ResearchGate" target="_blank"><i class="fas fa-book-open"></i></a>
+            </div>
+            <p>&copy; 2025 Sai Rithwik Nooguri. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.remove('translate-x-full');
-        });
-
-        document.getElementById('close-sidebar-btn').addEventListener('click', function() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.add('translate-x-full');
-        });
-
-        document.querySelectorAll('.sidebar-link').forEach(link => {
-            link.addEventListener('click', function() {
-                const sidebar = document.getElementById('sidebar');
-                sidebar.classList.add('translate-x-full');
-            });
-        });
-
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section');
-
-        function updateActiveLink() {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop - sectionHeight / 3) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            const toggle = document.querySelector('.menu-toggle i');
+            
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+                toggle.classList.remove('fa-times');
+                toggle.classList.add('fa-bars');
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+                nav.style.padding = '2rem';
+                nav.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+                toggle.classList.remove('fa-bars');
+                toggle.classList.add('fa-times');
+            }
         }
 
-        window.addEventListener('scroll', updateActiveLink);
-        document.addEventListener('DOMContentLoaded', updateActiveLink); // Call on load to set initial state
+        // Smooth Scroll & Close Menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if(window.innerWidth <= 768) {
+                    document.getElementById('navLinks').style.display = 'none';
+                    document.querySelector('.menu-toggle i').classList.remove('fa-times');
+                    document.querySelector('.menu-toggle i').classList.add('fa-bars');
+                }
+            });
+        });
     </script>
-    
-    <main class="pt-16">
-        <!-- Hero Section - Split Layout -->
-        <section id="home" class="h-screen flex flex-col md:flex-row">
-            <!-- Left Side: Text and Buttons -->
-            <div class="bg-black flex-1 flex flex-col justify-center p-8 md:p-16">
-                <p class="text-sm poppins text-gray-400">HELLO!</p>
-                <h1 class="text-5xl md:text-7xl font-extrabold poppins text-blue-500 mt-2 leading-tight tracking-tight">
-                    I'm Sai Rithwik Nooguri
-                </h1>
-                <p class="mt-4 text-xl poppins font-light text-white">
-                    <span id="typing-text"></span>
-                </p>
-                <script>
-                    // Create an array of typing text
-                    const typingTexts = [
-                        'Data Science Student  ',
-                        'Data Science Enthusiast  ',
-                        'Python Developer  ',
-                        'Data Analytics ',
-                        'AI Integrations  ',
-                    ];
-
-                    let currentIndex = 0;
-                    let charIndex = 0;
-                    const typingSpeed = 100; // Speed of typing effect
-                    const erasingSpeed = 50; // Speed of erasing effect
-                    const delayBetweenTexts = 2000; // Delay between texts
-
-                    const typingElement = document.getElementById('typing-text');
-
-                    function typeText() {
-                        if (charIndex < typingTexts[currentIndex].length) {
-                            typingElement.textContent += typingTexts[currentIndex].charAt(charIndex);
-                            charIndex++;
-                            setTimeout(typeText, typingSpeed);
-                        } else {
-                            setTimeout(eraseText, delayBetweenTexts);
-                        }
-                    }
-
-                    function eraseText() {
-                        if (charIndex > 0) {
-                            typingElement.textContent = typingTexts[currentIndex].substring(0, charIndex - 1);
-                            charIndex--;
-                            setTimeout(eraseText, erasingSpeed);
-                        } else {
-                            currentIndex = (currentIndex + 1) % typingTexts.length;
-                            setTimeout(typeText, typingSpeed);
-                        }
-                    }
-
-                    document.addEventListener('DOMContentLoaded', () => {
-                        typeText();
-                    });
-                </script>
-                <p class="mt-4 text-lg font-light text-gray-300 max-w-2xl">
-                    As a passionate data science and machine learning professional, I specialize in uncovering insights from complex datasets to drive strategic decision-making. With hands-on experience in predictive modeling, AI algorithms, and data visualization tools like Power BI and Tableau, I bridge the gap between data and actionable business intelligence. Currently pursuing an M.S. in Computer & Information Science (Data Science) at UNF, I am committed to leveraging technology to solve real-world problems through data-driven innovation.
-                </p>
-                <div class="mt-8 flex space-x-4">
-                    <a href="https://linkedin.com/in/sai-rithwik-nooguri" target="_blank" class="bg-blue-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300">
-                        LINKEDIN
-                    </a>
-                    <a href="#projects" class="border border-white text-white font-semibold py-3 px-6 rounded-full hover:bg-white hover:text-black transition-colors duration-300">
-                        MY WORKS
-                    </a>
-                </div>
-            </div>
-            <!-- Right Side: Image -->
-            <div class="flex-1 hero-bg"></div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-16 md:py-24 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-5xl">
-            <h2 class="section-header">About Me</h2>
-            <div class="bg-gray-800 rounded-lg p-6 shadow-xl text-center">
-                <img src="https://media.licdn.com/dms/image/v2/D5603AQEp2ym4fFbOGg/profile-displayphoto-scale_200_200/B56Zik3QQ9HUAY-/0/1755112606019?e=2147483647&v=beta&t=D7Vc0SKzmxHUz_aUUxn4fCMul6ClOGeMmV8uxYUL0fA" alt="Sai Rithwik" class="w-48 h-48 rounded-full object-cover border-4 border-blue-500 shadow-xl mx-auto transform transition-transform hover:scale-105 duration-300">
-                <div class="mt-6">
-                <h3 class="text-xl font-bold poppins text-white">Sai Rithwik Nooguri</h3>
-                <p class="text-gray-400">Data Science Student</p>
-                <p class="mt-2 text-gray-500 text-sm">Jacksonville, Florida, USA</p>
-                </div>
-            </div>
-            </div>
-        </section>
-        <div class="bg-gray-800 rounded-lg p-6 shadow-xl mt-6 text-center">
-            <p class="text-gray-400 text-lg">
-            Aspiring Data Scientist with a strong foundation in data analysis, machine learning, and data visualization, eager to leverage skills to drive impactful business insight.
-            </p>
-        </div>
-        <div class="bg-gray-800 rounded-lg p-6 shadow-xl mt-6">
-            <!-- Profile Section -->
-            <h4 class="text-white font-bold text-2xl poppins text-center">Profile</h4>
-            <ul class="list-disc list-inside text-sm text-gray-400 space-y-2 mt-4">
-            <li><strong>Profile:</strong> Data Science & Machine Learning</li>
-            <li><strong>Domain:</strong> Data Science, Data Analytics & AI</li>
-            <li><strong>Education:</strong> M.S. in Computer & Info Science (Data Science)</li>
-            <li><strong>Language:</strong> English, Hindi & Telugu</li>
-            <li><strong>Interest:</strong> AI Research & Data Science Projects</li>
-            </ul>
-        </div>
-        <div class="bg-gray-800 rounded-lg p-6 shadow-xl mt-6">
-            <!-- Skills Section -->
-            <h4 class="text-white font-bold text-2xl poppins text-center">Skills</h4>
-            <ul class="list-disc list-inside text-sm text-gray-400 space-y-2 mt-4"></ul>
-            <li><strong>Programming Languages:</strong> Python, R, SQL, C, Java</li>
-            <li><strong>Data Science & Analytics:</strong> Data Mining, Data Visualization (Excel, Tableau, Power BI), Applied Statistics, Big Data Analytics, ETL Processes</li>
-            <li><strong>Machine Learning & AI:</strong> Supervised & Unsupervised Learning, Reinforcement Learning, Generative AI, AI Algorithms, Prompt Engineering, Model Optimization, Natural Language Processing (NLP)</li>
-            <li><strong>Business Intelligence & CRM:</strong> Power BI, Advanced Excel, Zoho CRM, Operations Research</li>
-            <li><strong>Database Management:</strong> MySQL, DBMS, AWS Cloud Databases, Microsoft Azure</li>
-            </ul>
-        </div>
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-16 md:py-24 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-5xl">
-            <h2 class="section-header">Experience</h2>
-            <div class="bg-gray-800 rounded-lg p-6 shadow-xl space-y-6">
-                <!-- Experience Item 1 -->
-                <div class="space-y-2">
-                <h5 class="text-xl font-bold poppins text-blue-400">Nov 2023 - Jun 2024</h5>
-                <h6 class="text-lg font-bold text-white">Data Analyst Intern</h6>
-                <p class="text-gray-400 text-sm">GKB Labs.Inc</p>
-                <p class="text-gray-400 mt-2">A start-up company using Zoho CRM with over 10K+ professionals globally.</p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-2 mt-2">
-                    <li>Analyzed large datasets using Excel, Power BI, Python, and SQL to improve decision-making processes, enhancing customer experience and revenue optimization.</li>
-                    <li>Contributed to AI-driven projects, implementing data-driven solutions to enhance business processes.</li>
-                    <li>Specialized in data analysis using CRM tools, enhancing organizational efficiency.</li>
-                    <li>Engaged with clients to discuss the output and implications of data analysis, ensuring alignment with business objectives and providing actionable insights for improvement.</li>
-                </ul>
-                </div>
-                <!-- Experience Item 2 -->
-                <div class="mt-4 space-y-2">
-                <h5 class="text-xl font-bold poppins text-blue-400">May 2025 - Present</h5>
-                <h6 class="text-lg font-bold text-white">Data Science Intern</h6>
-                <p class="text-gray-400 text-sm">Jacksonville Rental Housing Project</p>
-                <div class="bg-gray-700 p-4 rounded-lg shadow-inner">
-                    <p class="text-gray-300 italic">I am currently assisting in data collection, formatting, and preparation of real estate transaction records from Duval County to support academic research.</p>
-                </div>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1 mt-2">
-                    <li>Using Python for cleaning, transformation, and visualization of housing datasets to uncover key trends and insights.</li>
-                    <li>Creating clear visualizations and dashboards to support presentations and research deliverables.</li>
-                    <li>Collaborating with faculty and student researchers to manage data pipelines and documentation.</li>
-                    <li>Listed as a team member on the official project website: jaxrentalhousingproject.domains.unf.edu.</li>
-                </ul>
-                </div>
-            </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="py-16 md:py-24 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-5xl">
-            <h2 class="section-header">Education</h2>
-            <div class="bg-gray-800 rounded-lg p-6 shadow-xl space-y-6">
-                <!-- Education Item 1 -->
-                <div class="space-y-2">
-                <h5 class="text-xl font-bold poppins text-blue-400">2024 - Expected 2026</h5>
-                <h6 class="text-lg font-bold text-white">M.S. in Computer & Info Science (Data Science)</h6>
-                <p class="text-gray-400 text-sm">University of North Florida (UNF)</p>
-                <p class="text-gray-400 mt-2">Grade: A</p>
-                </div>
-                <!-- Education Item 2 -->
-                <div class="space-y-2">
-                <h5 class="text-xl font-bold poppins text-blue-400">2021 - 2024</h5>
-                <h6 class="text-lg font-bold text-white">B.Sc. in Computer Data Science and Data Analytics Engineering</h6>
-                <p class="text-gray-400 text-sm">Loyola Academy</p>
-                <p class="text-gray-400 mt-2">Grade: 9.0</p>
-                </div>
-            </div>
-            </div>
-        </section>
-
-        <!-- Resume Section -->
-        <section id="resume" class="py-16 md:py-24 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-5xl">
-            <h2 class="section-header">Resume</h2>
-            <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
-                <p class="text-gray-400 leading-relaxed mb-8 text-center">
-                Download my resume to learn more about my experience, education, and skills in detail.
-                </p>
-                <div class="text-center">
-                <a href="https://drive.google.com/file/d/19XZxdlBcZg83d9M7dF9NkdwzS0y9syLE/view?usp=sharing" target="_blank" class="mt-6 inline-block bg-blue-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-600 transition-transform transform hover:scale-105 duration-300">
-                    View Resume
-                </a>
-                </div>
-            </div>
-            </div>
-        </section>
-<!-- Publications Section -->
-<section id="publications" class="py-16 md:py-24 bg-gray-900">
-    <div class="container mx-auto px-6 max-w-5xl">
-        <h2 class="section-header">Publications</h2>
-        <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
-            <h3 class="text-xl font-bold poppins text-white">Adaptive Credit Card Fraud Detection Using Machine Learning and Deep Reinforcement Learning</h3>
-            <p class="mt-2 text-gray-400">
-                This publication explores innovative approaches to credit card fraud detection by leveraging machine learning and deep reinforcement learning techniques.
-            </p>
-            <a href="https://www.researchgate.net/publication/395302677_Adaptive_Credit_Card_Fraud_Detection_Using_Machine_Learning_and_Deep_Reinforcement_Learning" target="_blank" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">
-                View Publication &rarr;
-            </a>
-        </div>
-    </div>
-</section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="bg-black py-16 md:py-24">
-            <div class="container mx-auto px-6 max-w-7xl">
-            <h2 class="section-header">My Projects</h2>
-            <p class="text-gray-400 text-center mb-8">Below are some of my Data Analytics and Machine Learning projects.</p>
-            <div class="space-y-12"> <!-- Add vertical spacing between projects -->
-                <!-- Project Card 1 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=IPL+Data" alt="IPL Data Analysis" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">IPL 2024 Data Analysis</h3>
-                <p class="mt-2 text-gray-400">A comprehensive analysis of Indian Premier League (IPL) data using Python, uncovering key trends and insights.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 2 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=SMS+Model" alt="SMS Spam Detection" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">SMS Spam Detection</h3>
-                <p class="mt-2 text-gray-400">A machine learning model for classifying text messages as either 'spam' or 'ham' using Python and Jupyter Notebook.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 3 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=Plagiarism+Detector" alt="Plagiarism Detection" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">Plagiarism Detection</h3>
-                <p class="mt-2 text-gray-400">A project that leverages TF-IDF and cosine similarity to detect potential plagiarism between text documents.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 4 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=Credit+Card+Fraud" alt="Credit Card Fraud Detection" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">Credit Card Fraud Detection</h3>
-                <p class="mt-2 text-gray-400">This project focuses on detecting fraudulent credit card transactions using machine learning techniques.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 5 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=Ethereum+Analysis" alt="Ethereum Transaction Analysis" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">Ethereum Transaction Analysis</h3>
-                <p class="mt-2 text-gray-400">Analyzing Ethereum blockchain transaction data to gain insights into trends, gas usage, and more.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 6 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=Sentiment+Analysis" alt="Sentiment Analysis" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">Twitter Sentiment Analysis</h3>
-                <p class="mt-2 text-gray-400">A project to analyze sentiment from Twitter data using NLP techniques to classify opinions.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 7 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=Customer+Churn" alt="Customer Churn" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">Customer Churn Prediction</h3>
-                <p class="mt-2 text-gray-400">Building a predictive model to identify customers likely to stop using a service.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 8 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=Sales+Dashboard" alt="Sales Dashboard" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">Sales Dashboard</h3>
-                <p class="mt-2 text-gray-400">A dynamic Power BI dashboard to visualize sales performance and key metrics.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-                <!-- Project Card 9 -->
-                <div class="bg-gray-800 rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/1200x600/0047AB/ffffff?text=Stock+Prediction" alt="Stock Price Prediction" class="rounded-lg mb-4 w-full h-64 object-cover">
-                <h3 class="text-xl font-bold poppins text-white">Stock Price Prediction</h3>
-                <p class="mt-2 text-gray-400">Using time series analysis and machine learning to predict future stock prices.</p>
-                <a href="#" class="mt-4 inline-block text-blue-500 font-semibold hover:underline">View Project &rarr;</a>
-                </div>
-            </div>
-            </div>
-        </section>
-        <section id="contact" class="py-16 md:py-24 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-5xl text-center">
-            <h2 class="section-header">Get In Touch</h2>
-            <p class="text-gray-400 leading-relaxed mb-8">
-                Feel free to connect with me on social media or send me an email. I'm always open to discussing new opportunities or collaborating on projects.
-            </p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://github.com/Nooguri13" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
-                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"></svg>
-                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.417 2.865 8.169 6.83 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.46-1.11-1.46-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.832.092-.64.352-1.085.642-1.336-2.22-.251-4.555-1.116-4.555-4.951 0-1.093.39-1.988 1.029-2.681-.103-.252-.446-1.278.098-2.659 0 0 .84-.27 2.75 1.022A9.638 9.638 0 0112 6.865c.85.004 1.701.114 2.516.334 1.91-1.292 2.75-1.022 2.75-1.022.546 1.381.202 2.407.098 2.659.64.693 1.029 1.588 1.029 2.681 0 3.841-2.335 4.69-4.562 4.942.36.31.676.92.676 1.855 0 1.336-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-                </svg>
-                </a>
-                <a href="https://linkedin.com/in/sai-rithwik-nooguri" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
-                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                </a>
-                <a href="mailto:rithwiknuguri13@gmail.com" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
-                <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M2.003 5.884L10 11l8-5.116V5H2.003v.884zM22 8v11H2V8l9.043 5.426c.204.123.444.184.685.184s.48-.061.685-.184L22 8zm-1 10V9.124L12 14l-9-4.876V18h18z"/>
-                </svg>
-                </a>
-            </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-white py-6">
-            <div class="container mx-auto px-6 text-center">
-            <p class="text-white">&copy; 2024 Sai Rithwik. All rights reserved.</p>
-            </div>
-        </footer>
+</body>
+</html>
